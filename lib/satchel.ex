@@ -55,6 +55,7 @@ defmodule Satchel do
   @spec unpack(binary(), atom()) :: any()
   def unpack(data, type)
   def unpack(str, :string), do: str
+
   def unpack(data, type) do
     {value, _rest} = unpack_take(data, type)
 
@@ -69,29 +70,50 @@ defmodule Satchel do
   """
   @spec unpack_take(binary(), atom()) :: {any(), binary()}
   def unpack_take(binary, type)
-  def unpack_take(<<b::unsigned-little-integer-8, rest::binary>>, :bool), do: {b == 1, rest}
 
-  def unpack_take(<<n::signed-little-integer-8, rest::binary>>, :int8), do: {n, rest}
-  def unpack_take(<<n::unsigned-little-integer-8, rest::binary>>, :uint8), do: {n, rest}
-  def unpack_take(<<n::signed-little-integer-16, rest::binary>>, :int16), do: {n, rest}
-  def unpack_take(<<n::unsigned-little-integer-16, rest::binary>>, :uint16), do: {n, rest}
-  def unpack_take(<<n::signed-little-integer-32, rest::binary>>, :int32), do: {n, rest}
-  def unpack_take(<<n::unsigned-little-integer-32, rest::binary>>, :uint32), do: {n, rest}
-  def unpack_take(<<n::signed-little-integer-64, rest::binary>>, :int64), do: {n, rest}
-  def unpack_take(<<n::unsigned-little-integer-64, rest::binary>>, :uint64), do: {n, rest}
+  def unpack_take(<<b::unsigned-little-integer-8, rest::binary>>, :bool),
+    do: {b == 1, rest}
 
-  def unpack_take(<<f::signed-little-float-32, rest::binary>>, :float32), do: {f, rest}
-  def unpack_take(<<f::signed-little-float-64, rest::binary>>, :float64), do: {f, rest}
+  def unpack_take(<<n::signed-little-integer-8, rest::binary>>, :int8),
+    do: {n, rest}
 
+  def unpack_take(<<n::unsigned-little-integer-8, rest::binary>>, :uint8),
+    do: {n, rest}
+
+  def unpack_take(<<n::signed-little-integer-16, rest::binary>>, :int16),
+    do: {n, rest}
+
+  def unpack_take(<<n::unsigned-little-integer-16, rest::binary>>, :uint16),
+    do: {n, rest}
+
+  def unpack_take(<<n::signed-little-integer-32, rest::binary>>, :int32),
+    do: {n, rest}
+
+  def unpack_take(<<n::unsigned-little-integer-32, rest::binary>>, :uint32),
+    do: {n, rest}
+
+  def unpack_take(<<n::signed-little-integer-64, rest::binary>>, :int64),
+    do: {n, rest}
+
+  def unpack_take(<<n::unsigned-little-integer-64, rest::binary>>, :uint64),
+    do: {n, rest}
+
+  def unpack_take(<<f::signed-little-float-32, rest::binary>>, :float32),
+    do: {f, rest}
+
+  def unpack_take(<<f::signed-little-float-64, rest::binary>>, :float64),
+    do: {f, rest}
 
   def unpack_take(
-        <<secs::unsigned-little-integer-32, nsecs::unsigned-little-integer-32, rest::binary>>,
+        <<secs::unsigned-little-integer-32, nsecs::unsigned-little-integer-32,
+          rest::binary>>,
         :time
       ),
       do: {{secs, nsecs}, rest}
 
   def unpack_take(
-        <<secs::signed-little-integer-32, nsecs::signed-little-integer-32, rest::binary>>,
+        <<secs::signed-little-integer-32, nsecs::signed-little-integer-32,
+          rest::binary>>,
         :duration
       ),
       do: {{secs, nsecs}, rest}
