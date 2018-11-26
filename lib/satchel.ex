@@ -20,7 +20,6 @@ defmodule Satchel do
   * `duration`, a tuple of secs and nsecs where both are `int32`s.
   """
 
-  # TODO examples in @doc tag
   @doc """
   Pack an Elixir value as a binary.
   """

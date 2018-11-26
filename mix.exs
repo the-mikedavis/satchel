@@ -7,7 +7,10 @@ defmodule Satchel.MixProject do
       version: "0.1.0",
       elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
-      deps: []
+      deps: [
+        {:ex_doc, "0.19.1"}
+      ],
+      name: "Satchel"
     ]
   end
 
