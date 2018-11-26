@@ -10,7 +10,9 @@ defmodule Satchel.MixProject do
       deps: [
         {:ex_doc, "0.19.1"}
       ],
-      name: "Satchel"
+      name: "Satchel",
+      source_url: "https://github.com/the-mikedavis/satchel.git",
+      description: "A (de)serializer for Elixir types"
     ]
   end
 
