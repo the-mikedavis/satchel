@@ -4,7 +4,7 @@ defmodule Satchel.MixProject do
   def project do
     [
       app: :satchel,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
       deps: [
@@ -12,9 +12,19 @@ defmodule Satchel.MixProject do
       ],
       name: "Satchel",
       source_url: "https://github.com/the-mikedavis/satchel.git",
-      description: "A (de)serializer for Elixir types"
+      description: "A (de)serializer for Elixir types",
+      package: package()
     ]
   end
 
   def application, do: [extra_applications: []]
+
+  defp package do
+    [
+      name: "satchel",
+      files: ~w(lib .formatter.exs mix.exs README.md LICENSE),
+      licenses: ["BSD3"],
+      links: %{"GitHub" => "https://github.com/the-mikedavis/satchel.git"}
+    ]
+  end
 end
